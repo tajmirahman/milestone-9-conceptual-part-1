@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { Outlet } from 'react-router-dom';
+
+export const authContext=createContext(null);
 
 const MainLayout = () => {
     return (

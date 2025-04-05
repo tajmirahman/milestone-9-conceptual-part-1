@@ -29,10 +29,11 @@ const Home = () => {
     }
  
     return (
-        <div className='p-10 space-x-2git a a '>
+        <div className='p-10 space-x-2'>
             
             <button onClick={handleGoogleLogin} className='btn btn-warning text-center'>Google Login</button>
             <button onClick={handleGithubLogin} className='btn btn-warning text-center'>Google Login</button>
+            
         </div>
     );
 };
