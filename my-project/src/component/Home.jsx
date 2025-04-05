@@ -1,11 +1,13 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React from 'react';
 import auth from '../firebase.init';
 
 const Home = () => {
 
+    const googleProvider= new GoogleAuthProvider();
+    const githubProvider= new GithubAuthProvider();
+
     const handleGoogleLogin=()=>{
-        const googleProvider= new GoogleAuthProvider();
 
         signInWithPopup(auth, googleProvider)
         .then(res=>{
@@ -16,10 +18,21 @@ const Home = () => {
         })
     }
 
+    const handleGithubLogin=()=>{
+        signInWithPopup(auth, githubProvider)
+        .then(res=>{
+            console.log(res);
+        })
+        .catch(err=>{
+            console.log(err.message);
+        })
+    }
+
     return (
-        <div>
-            <h1 className='text-3xl text-center'>I am Home page</h1>
+        <div className='p-10 space-x-2'>
+            
             <button onClick={handleGoogleLogin} className='btn btn-warning text-center'>Google Login</button>
+            <button onClick={handleGithubLogin} className='btn btn-warning text-center'>Google Login</button>
         </div>
     );
 };
