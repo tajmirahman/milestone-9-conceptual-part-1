@@ -27,9 +27,9 @@ const Home = () => {
             console.log(err.message);
         })
     }
-
+ 
     return (
-        <div className='p-10 space-x-2'>
+        <div className='p-10 space-x-2git a a '>
             
             <button onClick={handleGoogleLogin} className='btn btn-warning text-center'>Google Login</button>
             <button onClick={handleGithubLogin} className='btn btn-warning text-center'>Google Login</button>
