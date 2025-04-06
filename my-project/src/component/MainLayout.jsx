@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import auth from '../firebase.init';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -28,16 +28,22 @@ const MainLayout = () => {
     const handleGithubLogin=()=>{
         signInWithPopup(auth, githubProvider)
         .then(res=>{
-            console.log(res);
+            setUser(res);
         })
         .catch(err=>{
-            console.log(err.message);
+            setUser(err.message);
         })
     }
 
+    // useEffect(()=>{
+    //     console.log(user);
+    // },[user])
+
     useEffect(()=>{
-        console.log()
-    },[user])
+        onAuthStateChanged(auth,(currentUser)=>{
+            console.log(currentUser);
+        })
+    },[])
 
     const authInfo={
         handleGoogleLogin,
