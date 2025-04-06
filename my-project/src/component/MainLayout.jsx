@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import auth from '../firebase.init';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -25,6 +25,11 @@ const MainLayout = () => {
         })
     }
 
+    const handleLogOut=()=>{
+        signOut(auth)
+        // .then(res=>console.log(res))
+    }
+
     const handleGithubLogin=()=>{
         signInWithPopup(auth, githubProvider)
         .then(res=>{
@@ -35,19 +40,26 @@ const MainLayout = () => {
         })
     }
 
-    // useEffect(()=>{
-    //     console.log(user);
-    // },[user])
+    useEffect(()=>{
+        console.log(user);
+    },[user])
 
     useEffect(()=>{
-        onAuthStateChanged(auth,(currentUser)=>{
-            console.log(currentUser);
+       const unsubscribe= onAuthStateChanged(auth,(currentUser)=>{
+            setUser(currentUser);
         })
+
+        return ()=>{
+            unsubscribe()
+        }
     },[])
 
     const authInfo={
         handleGoogleLogin,
-        handleGithubLogin
+        handleGithubLogin,
+        handleLogOut,
+        user,
+        setUser
     }
 
 

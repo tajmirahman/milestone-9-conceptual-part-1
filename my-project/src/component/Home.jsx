@@ -5,7 +5,7 @@ import { AuthContext } from './MainLayout';
 
 const Home = () => {
 
-    const {handleGoogleLogin,handleGithubLogin}=useContext(AuthContext);
+    const {handleGoogleLogin,handleGithubLogin,handleLogOut}=useContext(AuthContext);
    
 
     
@@ -15,6 +15,7 @@ const Home = () => {
             
             <button onClick={handleGoogleLogin} className='btn btn-warning text-center'>Google Login</button>
             <button onClick={handleGithubLogin} className='btn btn-warning text-center'>Google Login</button>
+            <button onClick={handleLogOut} className='btn btn-warning'>Log Out</button>
 
         </div>
     );
