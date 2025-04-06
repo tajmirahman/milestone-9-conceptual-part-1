@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import auth from '../firebase.init';
@@ -8,17 +8,20 @@ export const AuthContext=createContext(null);
 
 const MainLayout = () => {
 
+    const [user,setUser]=useState(null);
+
     const googleProvider= new GoogleAuthProvider();
     const githubProvider= new GithubAuthProvider();
+
 
     const handleGoogleLogin=()=>{
 
         signInWithPopup(auth, googleProvider)
         .then(res=>{
-            console.log(res)
+            setUser(res)
         })
         .catch(err=>{
-            console.log(err);
+            setUser(err);
         })
     }
 
@@ -31,6 +34,10 @@ const MainLayout = () => {
             console.log(err.message);
         })
     }
+
+    useEffect(()=>{
+        console.log()
+    },[user])
 
     const authInfo={
         handleGoogleLogin,

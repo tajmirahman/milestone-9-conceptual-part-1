@@ -6,6 +6,7 @@ import { AuthContext } from './MainLayout';
 const Home = () => {
 
     const {handleGoogleLogin,handleGithubLogin}=useContext(AuthContext);
+   
 
     
  
