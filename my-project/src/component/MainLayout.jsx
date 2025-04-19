@@ -29,6 +29,7 @@ const MainLayout = () => {
 
         createUserWithEmailAndPassword(auth,email,password)
         .then(res=>{console.log(res.user)})
+        .catch(err=>{console.log(err)})
         
     }
 
