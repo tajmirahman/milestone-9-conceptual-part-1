@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from './MainLayout';
 
 const Registration = () => {
+
+    const {handleSignUp}=useContext(AuthContext);
 
     const handleForm=(e)=>{
         e.preventDefault();
 
         const email= e.target.email.value;
         const password= e.target.password.value;
-        const passwordCon= e.target.passwordCon.value;
-        console.log(email,password,passwordCon);
+        // const passwordCon= e.target.passwordCon.value;
+        handleSignUp(email,password);
         
     }
 

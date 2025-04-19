@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import auth from '../firebase.init';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -25,6 +25,13 @@ const MainLayout = () => {
         })
     }
 
+    const handleSignUp=(email,password)=>{
+
+        createUserWithEmailAndPassword(auth,email,password)
+        .then(res=>{console.log(res.user)})
+        
+    }
+
     const handleLogOut=()=>{
         signOut(auth)
         // .then(res=>console.log(res))
@@ -39,6 +46,10 @@ const MainLayout = () => {
             setUser(err.message);
         })
     }
+
+    
+
+        
 
     useEffect(()=>{
         console.log(user);
@@ -58,6 +69,7 @@ const MainLayout = () => {
         handleGoogleLogin,
         handleGithubLogin,
         handleLogOut,
+        handleSignUp,
         user,
         setUser
     }
