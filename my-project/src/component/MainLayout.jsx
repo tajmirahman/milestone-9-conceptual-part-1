@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import auth from '../firebase.init';
+import Navber from './Navber';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext=createContext(null);
@@ -90,6 +91,8 @@ const MainLayout = () => {
 
     return (
         <AuthContext.Provider value={authInfo}>
+            <Navber></Navber>
+            
             <Outlet></Outlet>
         </AuthContext.Provider>
     );

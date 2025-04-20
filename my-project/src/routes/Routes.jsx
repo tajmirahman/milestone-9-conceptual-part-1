@@ -4,6 +4,8 @@ import Home from "../component/Home";
 import About from "../component/About";
 import Registration from "../component/Registration";
 import Login from "../component/Login";
+import Profile from "../component/Profile";
+import PrivateRoute from "../component/PrivateRoute";
 
 const routes=createBrowserRouter([
     {
@@ -16,15 +18,23 @@ const routes=createBrowserRouter([
             },
             {
                 path:'/about',
-                element:<About />
+                element: <PrivateRoute>
+                    <About />
+                </PrivateRoute>
             },
             {
-                path:'/registration',
+                path:'/signup',
                 element:<Registration />
             },
             {
                 path:'/login',
                 element: <Login />
+            },
+            {
+                path:'/profile',
+                element: <PrivateRoute>
+                    <Profile />
+                </PrivateRoute>
             }
         ]
     }

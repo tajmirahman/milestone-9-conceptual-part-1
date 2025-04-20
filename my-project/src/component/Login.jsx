@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from './MainLayout';
+import {  NavLink } from 'react-router-dom';
 
 const Login = () => {
 
@@ -24,9 +25,11 @@ const Login = () => {
                         <input type="email" name='email' /><br />
                         <label>Password</label>
                         <input type="password" name='password' /><br />
-                        <input className='btn btn-ghost' type="submit" />
+                        <input className='btn btn-ghost' type="submit" /><br />
+                    <NavLink to={'/signup'}>Sign Up</NavLink>
                     </form>
                 </div>
+                
             </div>
         </div>
     );
