@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from './MainLayout';
 
 const Login = () => {
 
-    
+   const {handleSignIn}=useContext(AuthContext);
+
+    const handleLogin=(e)=>{
+        e.preventDefault();
+
+        const email= e.target.email.value;
+        const password= e.target.password.value;
+        handleSignIn(email,password)
+        
+    }
 
     return (
         <div>
@@ -14,7 +24,7 @@ const Login = () => {
                         <input type="email" name='email' /><br />
                         <label>Password</label>
                         <input type="password" name='password' /><br />
-                        <input type="submit" />
+                        <input className='btn btn-ghost' type="submit" />
                     </form>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import auth from '../firebase.init';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -32,6 +32,15 @@ const MainLayout = () => {
         .catch(err=>{console.log(err)})
         
     }
+
+    const handleSignIn=(email,password)=>{
+
+        signInWithEmailAndPassword(auth,email,password)
+        .then(res=>{console.log(res.user)})
+        .catch(err=>{console.log(err)})
+        
+    }
+
 
     const handleLogOut=()=>{
         signOut(auth)
@@ -71,6 +80,7 @@ const MainLayout = () => {
         handleGithubLogin,
         handleLogOut,
         handleSignUp,
+        handleSignIn,
         user,
         setUser
     }
