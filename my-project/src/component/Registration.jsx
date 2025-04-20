@@ -22,6 +22,13 @@ const Registration = () => {
             return;
         }
 
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=(?:.*\d){2,})(?=.*[^A-Za-z0-9]).+$/;
+
+        if(!regex.test(password)){
+            alert('valid not password');
+            return;
+        }
+
             handleSignUp(email, password);
 
 
@@ -38,10 +45,10 @@ const Registration = () => {
                         <label className="fieldset-label">Email</label>
                         <input type="email" name='email' className="input" placeholder="Email" />
                         <label className="fieldset-label">Password</label>
-                        <input type="password" name='password' className="input" placeholder="Password" />
+                        <input type="text" name='password' className="input" placeholder="Password" />
 
                         <label className="fieldset-label">Password Confirm</label>
-                        <input type="password" name='passwordCon' className="input" placeholder="Password" />
+                        <input type="text" name='passwordCon' className="input" placeholder="Password" />
 
                         <button className="btn btn-neutral mt-4">Login</button>
                     </fieldset>
